@@ -79,13 +79,39 @@ def testAdaugaNrDivProprii():
     assert AdaugaNrDivProprii([3,7])==[3,0,7,0]
     assert AdaugaNrDivProprii([19,5])==[19,0,5,0]
 
+def tupluNr(l):
+    '''
+    functia returneaza lista obtinuta din lista inițială în care numerele sunt înlocuite cu un tuplu în care pe
+    prima poziție este numărul, pe a doua poziție va fi indexul elementului din listă, iar pe a treia
+    poziție apare numărul de apariții a numărului.
+    :param l: lista de nr intregi
+    :return: lista modificata
+    '''
+
+    rezultat=[]
+    i=-1
+    for x in l:
+        nr=0
+        i=i+1
+        for j in l:
+            if x==j:
+                nr=nr+1
+        tuplu=(x,i,nr)
+        rezultat.append(tuplu)
+    return rezultat
+
+def testtupluNr():
+
+    assert tupluNr([25, 13, 26, 13])==[(25, 0, 1), (13, 1, 2), (26, 2, 1), (13, 3, 2)]
+
 
 def printMenu():
     print("1.Citire.")
     print("2. Elimina nr prime din lista.")
     print("3. Verifica daca media aritmetica este mai mare decat un nr dat.")
     print("4. Adauga dupa fiecare element nr de divizori proprii ai acestuia ")
-    print("5. Iesire")
+    print("5. Afișarea listei obținute din lista inițială în care numerele sunt înlocuite cu un tuplu.")
+    print("6.Iesire")
 
 def citireListe():
     l=[]
@@ -99,6 +125,7 @@ def main():
     testeliminaNrPrime()
     testmediaAritmetica()
     testAdaugaNrDivProprii()
+    testtupluNr()
     l=[]
     while True:
         printMenu()
@@ -114,7 +141,9 @@ def main():
               print(mediaAritmetica(l,n))
             elif optiune=="4":
                 print(AdaugaNrDivProprii(l))
-            elif optiune == "5":
+            elif optiune=="5":
+                print (tupluNr(l))
+            elif optiune == "6":
                 break
         else:
             print("Optiune gresita! Reincercati!")
